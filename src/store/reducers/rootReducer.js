@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import data from '../data/host-app-data.json';
-import { mergeSort } from '../../utils';
+import { mergeSort } from '../../utils/data-utils';
 
 const hostData = () => {
     const hostsList = {};
