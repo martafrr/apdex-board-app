@@ -1,21 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Navbar from './Navbar';
+import Header from './Header';
 import { findByTestAtr } from '../utils/test-utils';
 
 const setup = (props = {}) => {
-    const component = shallow(<Navbar {...props} />);
+    const component = shallow(<Header {...props} />);
     return component;
 };
 
-describe('Navbar Component', () => {
+describe('Header Component', () => {
     let component;
     beforeEach(() => {
         component = setup();
     });
 
     it('should render without errors', () => {
-        const wrapper = findByTestAtr(component, 'navbar');
+        const wrapper = findByTestAtr(component, 'header');
         expect(wrapper.length).toBe(1);
     });
 

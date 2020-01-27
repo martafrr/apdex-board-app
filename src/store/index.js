@@ -12,5 +12,5 @@ export default () => {
     );
 }
 
-// export const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
-// export const store = createStoreWithMiddleware(rootReducer)
+// TODO /  check: export const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+// TODO /  check:export const store = createStoreWithMiddleware(rootReducer)
