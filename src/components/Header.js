@@ -20,28 +20,35 @@ class Header extends Component {
 		const headerStyles = {
 			background: '#b1c5d4',
 			paddingRight: '20px',
-			width: '100%',
 			height: '80px',
+			display: 'flex',
+			flexFlow: 'row nowrap',
+			justifyContent: 'space-between',
 			[breakpoint.phablet]: {
-				height: '200px',
+				height: '120px',
+				flexFlow: 'column wrap',
 			}
 		}
-		const leftGroupStyles = {
-			float: 'left',
+		const logoGroupStyles = {
+			height: '70px',
+			[breakpoint.phablet]: {
+				display: 'block',
+			}
 		}
-		const rightGroupStyles = {
-			float: 'right',
-			// TODO responsive behaviour
-			
+		const inputStyles = {
+			height: '40px',
+			marginLeft: '70px',
 		}
 		const headerElemStyles = {
 			display: 'inline-block',
 		}
 		const logoStyles = {
-			height: '80px',	
+			height: '85px',	
 			paddingLeft: '50px',
+			paddingRight: '10px',
 		}
 		const titleStyle = {
+			color: '#686573',
 			textDecoration: 'none',
 			fontSize: '35px',
 			lineHeight: '80px',
@@ -53,17 +60,22 @@ class Header extends Component {
 			fontSize: '15px',
 			lineHeight: '50px',
 			paddingRight: '50px',
-		}
+			marginLeft: '5px',
+			[breakpoint.phablet]: {
+				lineHeight: 0,
 
+			}
+		}
+		
 		return (
 			<header style={headerStyles} data-test="header">
-				<div style={leftGroupStyles}>
+				<div style={logoGroupStyles}>
 					<img style={logoStyles} src={Logo} alt="logo" data-test="logo"/>
 					<NavLink to='/' style={titleStyle}>
 						<label>Apps by Host</label>
 					</NavLink>
 				</div>
-				<div style={rightGroupStyles}>
+				<div style={inputStyles}>
 					<input 
 						style={headerElemStyles}
 						type="checkbox"
