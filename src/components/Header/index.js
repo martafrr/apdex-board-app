@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Radium from "radium";
 import { NavLink } from "react-router-dom";
-import Logo from '../assets/logo.png';
-import breakpoint from '../utils/breakpoints';
+import Logo from '../../assets/logo.png';
+import breakpoint from '../../utils/breakpoints';
 
 class Header extends Component {
 	// TODO: CONNECT TO REDUX LATER

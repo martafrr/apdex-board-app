@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { hostsSelector } from '../store/selectors/hostsSelectors';
-import HostCard from './HostCard';
-import { Column, Row } from '../grid/Grid';
+import { hostsSelector } from '../../store/selectors/hostsSelectors';
+import HostCard from '../HostCard';
+import { Column, Row } from '../../grid/Grid';
 
 export class HomePage extends Component {
     render() {

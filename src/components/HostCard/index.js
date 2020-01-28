@@ -1,6 +1,6 @@
 import React from "react";
 
-const HostCard = ({name, hostsApp}) => {
+const HostCard = ({ name, hostsApp }) => {
     const hostCard = {
         background: '#d6d7dc',
         color: '#2c3437',
@@ -18,7 +18,7 @@ const HostCard = ({name, hostsApp}) => {
         
     );
     return (
-        <div style={hostCard}>
+        <div style={hostCard} data-test="host-card">
             <h3>{name}</h3>
             {apps}
         </div>
