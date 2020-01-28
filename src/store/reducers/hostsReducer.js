@@ -1,8 +1,8 @@
-import data from '../data/host-app-data.json';
+import dataBase from '../data/host-app-data.json';
 import { mergeSort } from '../../utils/data-utils';
 import { GET_HOSTS_DATA, GET_HOST } from '../actions/constants';
 
-const hostData = () => {
+const getHostsList = (data) => {
     const hostsList = {};
     for (let app of data) {
         for (let host of app.host) {
@@ -18,9 +18,11 @@ const hostData = () => {
     }
     return hostsList;
 }
+const initialState = getHostsList(dataBase);
 
-export default (state=hostData(), action) => {
+export default (state=initialState, action) => {
     switch(action.type) {
+        // TODO: NEEDED????
         case GET_HOST:
             return action.payload;
         default:

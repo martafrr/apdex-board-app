@@ -16,7 +16,7 @@ export class HomePage extends Component {
             const hostsArr = [];
             for(let host in hosts) {
                 hostsArr.push(
-                    <Column xs="12" sm="6">
+                    <Column xs="12" sm="6" key={host}>
                         <HostCard key={host} name={host} hostsApp={hosts[host]}/>
                     </Column>
                 );

@@ -4,4 +4,3 @@ import hosts from './hostsReducer';
 export default combineReducers({
 	hosts
 });
-
