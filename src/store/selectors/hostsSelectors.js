@@ -1,0 +1,1 @@
+export const hostsSelector = state => state.hosts;
