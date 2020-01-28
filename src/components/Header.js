@@ -20,20 +20,18 @@ class Header extends Component {
 		const headerStyles = {
 			background: '#b1c5d4',
 			paddingRight: '20px',
-			height: '80px',
+			height: '120px',
 			display: 'flex',
-			flexFlow: 'row nowrap',
+			flexFlow: 'column wrap',
 			justifyContent: 'space-between',
-			[breakpoint.phablet]: {
-				height: '120px',
-				flexFlow: 'column wrap',
+			[breakpoint.tablet]: {
+				height: '80px',
+				flexFlow: 'row nowrap',
 			}
 		}
 		const logoGroupStyles = {
+			display: 'block',
 			height: '70px',
-			[breakpoint.phablet]: {
-				display: 'block',
-			}
 		}
 		const inputStyles = {
 			height: '40px',
@@ -58,12 +56,11 @@ class Header extends Component {
 		const textStyle = {
 			...headerElemStyles,
 			fontSize: '15px',
-			lineHeight: '50px',
+			lineHeight: 0,
 			paddingRight: '50px',
 			marginLeft: '5px',
-			[breakpoint.phablet]: {
-				lineHeight: 0,
-
+			[breakpoint.tablet]: {
+				lineHeight: '50px',
 			}
 		}
 		
