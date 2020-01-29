@@ -1,7 +1,6 @@
-import { ADD_APP_TO_HOST } from './constants';
+import { ADD_APP_TO_HOST, REMOVE_APP_FROM_HOST } from './constants';
 
-export const addAppToHost = ({ name, contributors, version, apdex, hosts }, hostName) => {
-    return {
+export const addAppToHost = ({ name, contributors, version, apdex, hosts }, hostName) => ({
     type: ADD_APP_TO_HOST,
     payload: {
         hostName,
@@ -10,7 +9,16 @@ export const addAppToHost = ({ name, contributors, version, apdex, hosts }, host
             contributors,
             version,
             apdex: parseInt(apdex), 
-            hosts
+            hosts,
         }
     }
-}};
+});
+
+export const removeAppFromHost = (indexAppToRemove, app, hostName) => ({
+    type: REMOVE_APP_FROM_HOST,
+    payload: {
+        indexAppToRemove,
+        app,
+        hostName,
+    }
+});

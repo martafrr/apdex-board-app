@@ -1,6 +1,11 @@
 import dataBase from '../data/host-app-data.json';
 import { mergeSort } from '../../utils/data-utils';
-import { GET_HOSTS_DATA, GET_HOST, ADD_APP_TO_HOST } from '../actions/constants';
+import { 
+    GET_HOSTS_DATA,
+    GET_HOST, 
+    ADD_APP_TO_HOST,
+    REMOVE_APP_FROM_HOST,
+} from '../actions/constants';
 
 const getHostsList = (data) => {
     const hostsList = {};
@@ -25,6 +30,7 @@ export default (state=initialState, action) => {
         // TODO: NOT BEIGN USED
         case GET_HOST:
             return action.payload;
+        
         case ADD_APP_TO_HOST: 
             const newAppArray = state[action.payload.hostName]
                 .concat(action.payload.appInfo);
@@ -33,6 +39,19 @@ export default (state=initialState, action) => {
             }
             updatedState[action.payload.hostName] = mergeSort(newAppArray);
             return updatedState;
+        
+        case REMOVE_APP_FROM_HOST:
+            const { hostName, indexAppToRemove } = action.payload;
+            const newAppsList = state[hostName]
+                .slice(0, indexAppToRemove)
+                .concat(
+                    state[hostName].slice(indexAppToRemove+1)
+                );
+            return {
+                ...state,
+                [hostName]: newAppsList
+            }
+
         default:
             return state;
     }

@@ -17,7 +17,7 @@ export class HomePage extends Component {
             for(let host in hosts) {
                 hostsArr.push(
                     <Column xs="12" sm="6" key={host}>
-                        <HostCard key={host} name={host} hostsApp={hosts[host]}/>
+                        <HostCard key={host} hostName={host} hostsApp={hosts[host]}/>
                     </Column>
                 );
             }
