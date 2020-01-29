@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { SubmissionError } from 'redux-form';
+import AddAppForm from './AddAppForm';
 import { hostSelector } from '../../store/selectors/hostsSelectors';
 import { 
     hostCardStyles,
@@ -10,6 +12,56 @@ import {
 } from './stylesHostPage';
 
 class HostPage extends Component {
+    state = {
+        isAddAppFormVisible: false,
+        isEditAppFormVisible: false,
+    }
+
+    toggleAddForm = (e) => {
+        this.setState({
+            isAddAppFormVisible: !this.state.isAddAppFormVisible
+        });
+    }
+
+    handleAddAppForm = ({ name='', contributors='', version='', apdex='', hosts='' }) => {
+        const error = {};
+        let isError = false;
+        
+        if(name.trim() === '') {
+            error.name = 'Required';
+            isError = true;
+        }
+        if(contributors.trim() === '') {
+            error.contributors = 'Required';
+            isError = true;
+        }
+        if(version.trim() === '') {
+            error.version = 'Required';
+            isError = true;
+        }
+        if(apdex.trim() === '') {
+            error.apdex = 'Required';
+            isError = true;
+        }
+        if(hosts.trim() === '') {
+            error.hosts = 'Required';
+            isError = true;
+        }
+    
+        if(isError) {
+            throw new SubmissionError(error);
+        } else {
+            // submit form 
+        }
+        console.log('values', name, contributors, version, apdex, hosts);
+    }
+
+    handleEditClick = () => {
+        this.setState({
+            isEditAppFormVisible: !this.state.isEditAppFormVisible
+        });
+    }
+    
     getTopAppsByHost() {
         return this.props.hostInfo.map((app, index) => {
             if(index < 25) {
@@ -22,7 +74,7 @@ class HostPage extends Component {
             return null;
         })
     }
-
+    
     render() {
         const { hostInfo } = this.props;
         const hostName = this.props.match.params.host_name;
@@ -33,18 +85,25 @@ class HostPage extends Component {
         
         return (
             <div style={hostCardStyles} data-test="host-info">
-                <div style={buttonsContainer}>
-                    <button style={buttonStyles}>
-                        Add App in this Host
-                    </button>
-                    <button style={buttonStyles}>
-                        Edit Hosts Apps
-                    </button>
-                </div>
                 <ul style={appListStyles}>
                     <h3>{hostName}</h3>
                     {appList}
                 </ul>
+                <div style={buttonsContainer}>
+                    <button style={buttonStyles} onClick={this.toggleAddForm}>
+                        {!this.state.isAddAppFormVisible ? 
+                            'Add App in this Host' :
+                            'Hide Form'
+                        }
+                    </button>
+                    {/* TODO: ADD THIS BUTTON IN MODAL WINDOW */}
+                    {/* <button style={buttonStyles} onClick={this.handleEditClick}>
+                        Edit Hosts Apps
+                    </button> */}
+                </div>
+                {this.state.isAddAppFormVisible && <div>
+                    <AddAppForm onSubmit={this.handleAddAppForm}/>
+                </div>}
             </div>
         )
     }
