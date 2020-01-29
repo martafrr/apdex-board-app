@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError, reset } from 'redux-form';
 import AddAppForm from './AddAppForm';
 import { hostSelector } from '../../store/selectors/hostsSelectors';
 import { 
@@ -10,6 +10,7 @@ import {
     buttonsContainer,
     buttonStyles,
 } from './stylesHostPage';
+import { addAppToHost } from '../../store/actions';
 
 class HostPage extends Component {
     state = {
@@ -50,10 +51,11 @@ class HostPage extends Component {
     
         if(isError) {
             throw new SubmissionError(error);
-        } else {
-            // submit form 
         }
-        console.log('values', name, contributors, version, apdex, hosts);
+        
+        const hostName = this.props.match.params.host_name;
+        this.props.addAppToHost({name, contributors, version, apdex, hosts}, hostName);
+        this.props.clearForm();
     }
 
     handleEditClick = () => {
@@ -115,6 +117,11 @@ const mapStateToProps = (state, ownProps) => {
     return {
         hostInfo: hostSelector(name, state),
     }
-}
+};
 
-export default connect(mapStateToProps)(HostPage);
+const mapDispatchToProps = (dispatch) => ({
+    addAppToHost: (appInfo, hostName) => { dispatch(addAppToHost(appInfo, hostName)) },
+    clearForm: () => dispatch(reset('addAppForm')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HostPage);

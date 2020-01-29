@@ -1,6 +1,6 @@
 import dataBase from '../data/host-app-data.json';
 import { mergeSort } from '../../utils/data-utils';
-import { GET_HOSTS_DATA, GET_HOST } from '../actions/constants';
+import { GET_HOSTS_DATA, GET_HOST, ADD_APP_TO_HOST } from '../actions/constants';
 
 const getHostsList = (data) => {
     const hostsList = {};
@@ -22,9 +22,17 @@ const initialState = getHostsList(dataBase);
 
 export default (state=initialState, action) => {
     switch(action.type) {
-        // TODO: NEEDED????
+        // TODO: NOT BEIGN USED
         case GET_HOST:
             return action.payload;
+        case ADD_APP_TO_HOST: 
+            const newAppArray = state[action.payload.hostName]
+                .concat(action.payload.appInfo);
+            const updatedState = {
+                ...state,
+            }
+            updatedState[action.payload.hostName] = mergeSort(newAppArray);
+            return updatedState;
         default:
             return state;
     }
