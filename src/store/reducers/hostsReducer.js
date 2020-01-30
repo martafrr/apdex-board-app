@@ -55,6 +55,7 @@ export default (state=initialState, action) => {
 
         case REMOVE_APP_FROM_ALL_HOSTS:
             console.log(action.payload)
+            // TODO: !!!!!
             for(let host in state) {
 
             }

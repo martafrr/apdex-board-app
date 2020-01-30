@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeAppFromHost, removeAppFromAllHosts } from '../../store/actions';
+import { removeAppFromHost, removeAppFromAllHosts } from '../../store/actions/hostActions';
 import { 
     modalStyles,
     modalCloseButtonStyles, 

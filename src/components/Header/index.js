@@ -1,29 +1,26 @@
-import React, { Component } from "react";
-import Radium from "radium";
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Radium from 'radium';
+import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import breakpoint from '../../utils/breakpoints';
+import { gridSelector } from '../../store/selectors/layoutSelectors';
+import { changeLayout } from '../../store/actions/layoutActions';
 
 class Header extends Component {
-	state = {
-		grid: false,
-	}
-
-	handleCheck = e => {
-		this.setState({ grid: !this.state.grid })
-		console.log(e);
+	handleChangeLayout = () => {
+		this.props.changeLayout();
 	}
 
   	render() {
 		const headerStyles = {
 			background: '#b1c5d4',
 			paddingRight: '20px',
-			height: '120px',
+			height: '80px',
 			display: 'flex',
 			flexFlow: 'column wrap',
 			justifyContent: 'space-between',
 			[breakpoint.tablet]: {
-				height: '80px',
 				flexFlow: 'row nowrap',
 			}
 		}
@@ -51,9 +48,10 @@ class Header extends Component {
 			height: '40px',
 			marginLeft: '65px',
 			[breakpoint.mobile]: {
-				margin: 'auto 60px'
+				display: 'none',
 			},
 			[breakpoint.tablet]: {
+				margin: 'auto 60px',
 				display: 'flex'
 			}
 		}
@@ -75,11 +73,9 @@ class Header extends Component {
 				<div style={buttonStyles}>
 					<button 
 						style={gridListButtonStyle}
-						onClick={this.handleCheck} 
+						onClick={this.handleChangeLayout} 
 					>
-						{/* <p style={textStyle}> */}
-						{this.state.grid ? `Show as list` : `Show as an awesome grid`}
-						{/* </p> */}
+						{this.props.isAwesomeGrid ? `Show as list` : `Show as an awesome grid`}	
 					</button>
 				</div>
 			</header>
@@ -87,4 +83,12 @@ class Header extends Component {
 	  }
 };
 
-export default Radium(Header);
+const mapStateToProps = state => ({
+    isAwesomeGrid: gridSelector(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    changeLayout: () => { dispatch(changeLayout()) },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(Header));

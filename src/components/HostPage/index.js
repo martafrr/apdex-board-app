@@ -10,7 +10,7 @@ import {
     buttonsContainer,
     buttonStyles,
 } from './stylesHostPage';
-import { addAppToHost } from '../../store/actions';
+import { addAppToHost } from '../../store/actions/hostActions';
 
 class HostPage extends Component {
     state = {

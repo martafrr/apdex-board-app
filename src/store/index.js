@@ -11,6 +11,3 @@ export default () => {
         composeWithDevTools(applyMiddleware(...middleware))
     );
 }
-
-// TODO /  check: export const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
-// TODO /  check:export const store = createStoreWithMiddleware(rootReducer)
