@@ -1,17 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from './Header';
-import { findByTestAtr } from '../../utils/test-utils';
+import { Header } from './index';
+import { findByTestAtr, testStore } from '../../utils/test-utils';
 
-const setup = (props = {}) => {
-    const component = shallow(<Header {...props} />);
+const setup = (props = {}, initialState={}) => {
+    const mockStore = testStore(initialState);
+    const component = shallow(<Header {...props} store={mockStore} />);
     return component;
 };
 
 describe('Header Component', () => {
     let component;
+    const mockProps = {
+        changeLayout: () => {},
+        isAwesomeGrid: false,
+    }
     beforeEach(() => {
-        component = setup();
+        component = setup(mockProps);
     });
 
     it('should render without errors', () => {
