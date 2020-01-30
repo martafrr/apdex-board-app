@@ -31,7 +31,11 @@ export const AppModal = ({
 
     const modalWindow = (
         <div style={modalStyles} data-test="modal-window">
-            <button onClick={onClose} style={modalCloseButtonStyles}>
+            <button 
+                onClick={onClose} 
+                style={modalCloseButtonStyles}
+                data-test="close-modal-button"
+            >
                 X
             </button>
 
@@ -45,12 +49,14 @@ export const AppModal = ({
                 <button 
                     style={modalRemoveButtonStyles}
                     onClick={onDeleteThisHostOnly}
+                    data-test="remove-host-only-button"
                 >
                     Delete app on this host only
                 </button>
                 <button 
                     style={modalRemoveButtonStyles}
                     onClick={onDeleteAllHosts}
+                    data-test="remove-all-hosts-button"
                 >
                     Delete app on all hosts
                 </button>
