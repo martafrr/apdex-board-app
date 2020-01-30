@@ -4,7 +4,8 @@ import {
     GET_HOSTS_DATA,
     GET_HOST, 
     ADD_APP_TO_HOST,
-    REMOVE_APP_FROM_HOST,
+    REMOVE_APP_FROM_ONE_HOST,
+    REMOVE_APP_FROM_ALL_HOSTS,
 } from '../actions/constants';
 
 const getHostsList = (data) => {
@@ -34,13 +35,13 @@ export default (state=initialState, action) => {
         case ADD_APP_TO_HOST: 
             const newAppArray = state[action.payload.hostName]
                 .concat(action.payload.appInfo);
-            const updatedState = {
+            const updatedHostList = {
                 ...state,
             }
-            updatedState[action.payload.hostName] = mergeSort(newAppArray);
-            return updatedState;
+            updatedHostList[action.payload.hostName] = mergeSort(newAppArray);
+            return updatedHostList;
         
-        case REMOVE_APP_FROM_HOST:
+        case REMOVE_APP_FROM_ONE_HOST:
             const { hostName, indexAppToRemove } = action.payload;
             const newAppsList = state[hostName]
                 .slice(0, indexAppToRemove)
@@ -50,6 +51,15 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 [hostName]: newAppsList
+            }
+
+        case REMOVE_APP_FROM_ALL_HOSTS:
+            console.log(action.payload)
+            for(let host in state) {
+
+            }
+            return {
+                state
             }
 
         default:
