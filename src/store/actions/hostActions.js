@@ -27,9 +27,10 @@ export const removeAppFromHost = (indexAppToRemove, app, hostName) => ({
     }
 });
 
-export const removeAppFromAllHosts = (appToRemove) => ({
+export const removeAppFromAllHosts = (appName, hostName) => ({
     type: REMOVE_APP_FROM_ALL_HOSTS,
     payload: {
-        appToRemove
+        appName, 
+        hostName,
     }
 });

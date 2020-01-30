@@ -26,7 +26,7 @@ const AppModal = ({
     }
     const onDeleteAllHosts =  () => {
         onClose();
-        removeAppFromAllHosts(appsIndex, appInfo.name, hostName);
+        removeAppFromAllHosts(appInfo.name, hostName);
     }
 
     const modalWindow = (
@@ -65,7 +65,7 @@ const AppModal = ({
 
 const mapDispatchToProps = (dispatch) => ({
     removeAppFromHostOnly: (indexAppToRemove, name, hostsApp) => { dispatch(removeAppFromHost(indexAppToRemove, name, hostsApp)) },
-    removeAppFromAllHosts: (appInfo) => { dispatch(removeAppFromAllHosts(appInfo)) },
+    removeAppFromAllHosts: (appName, hostName) => { dispatch(removeAppFromAllHosts(appName, hostName)) },
 });
 
 export default connect(null, mapDispatchToProps)(AppModal);

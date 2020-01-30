@@ -33,17 +33,17 @@ export default (state=initialState, action) => {
             return action.payload;
         
         case ADD_APP_TO_HOST: 
-            const newAppArray = state[action.payload.hostName]
+            const appArrayWithNewEntry = state[action.payload.hostName]
                 .concat(action.payload.appInfo);
-            const updatedHostList = {
+            const updatedHostState = {
                 ...state,
             }
-            updatedHostList[action.payload.hostName] = mergeSort(newAppArray);
-            return updatedHostList;
+            updatedHostState[action.payload.hostName] = mergeSort(appArrayWithNewEntry);
+            return updatedHostState;
         
         case REMOVE_APP_FROM_ONE_HOST:
             const { hostName, indexAppToRemove } = action.payload;
-            const newAppsList = state[hostName]
+            let newAppsList = state[hostName]
                 .slice(0, indexAppToRemove)
                 .concat(
                     state[hostName].slice(indexAppToRemove+1)
@@ -54,14 +54,19 @@ export default (state=initialState, action) => {
             }
 
         case REMOVE_APP_FROM_ALL_HOSTS:
-            console.log(action.payload)
-            // TODO: !!!!!
-            for(let host in state) {
+            const cleanHostList = {};
+            const appToRemove = action.payload.appName;
 
+            for(let host in state) {
+                for (let i = 0; i < state[host].length; i++) {
+                    if(state[host][i].name !== appToRemove) {
+                        cleanHostList[host] ? 
+                            cleanHostList[host].push(state[host][i]) :
+                            cleanHostList[host] = [state[host][i]]
+                    }
+                }
             }
-            return {
-                state
-            }
+            return cleanHostList;
 
         default:
             return state;
