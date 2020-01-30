@@ -1,7 +1,7 @@
 import hostsReducer from './hostsReducer';
 import { GET_HOST, ADD_APP_TO_HOST } from '../actions/constants';
 
-describe('Hosts Reducer', () => {
+describe('Hosts reducer', () => {
     const hosts = {
         'host1': [{name: 'app1', apdex: 1}],
         'host2': [{name: 'app2', apdex: 1}],
@@ -11,14 +11,6 @@ describe('Hosts Reducer', () => {
     it('should return default state', () => {
         const newState = hostsReducer(hosts, {});
         expect(newState).toEqual(hosts)
-    });
-
-    it('should return new action.payload if GET_HOST type', () => {
-        const newStateProperty = hostsReducer(undefined, {
-            type: GET_HOST,
-            payload: hosts
-        });
-        expect(newStateProperty).toEqual(hosts)
     });
 
     it('should return new state if receiving type', () => {

@@ -8,7 +8,7 @@ import {
     modalRemoveButtonStyles,
 } from './appModalStyles';
 
-const AppModal = ({ 
+export const AppModal = ({ 
         appInfo,
         appsIndex, 
         hostName, 
@@ -22,15 +22,15 @@ const AppModal = ({
 
     const onDeleteThisHostOnly =  () => {
         onClose();
-        removeAppFromHostOnly(appsIndex, appInfo.name, hostName);
+        removeAppFromHostOnly(appsIndex, hostName);
     }
     const onDeleteAllHosts =  () => {
         onClose();
-        removeAppFromAllHosts(appInfo.name, hostName);
+        removeAppFromAllHosts(appInfo.name);
     }
 
     const modalWindow = (
-        <div style={modalStyles}>
+        <div style={modalStyles} data-test="modal-window">
             <button onClick={onClose} style={modalCloseButtonStyles}>
                 X
             </button>
@@ -59,13 +59,12 @@ const AppModal = ({
     )
     return  (
         isOpen && modalWindow
-    )
-    
+    );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    removeAppFromHostOnly: (indexAppToRemove, name, hostsApp) => { dispatch(removeAppFromHost(indexAppToRemove, name, hostsApp)) },
-    removeAppFromAllHosts: (appName, hostName) => { dispatch(removeAppFromAllHosts(appName, hostName)) },
+    removeAppFromHostOnly: (indexAppToRemove, hostsApp) => { dispatch(removeAppFromHost(indexAppToRemove, hostsApp)) },
+    removeAppFromAllHosts: (appName) => { dispatch(removeAppFromAllHosts(appName)) },
 });
 
 export default connect(null, mapDispatchToProps)(AppModal);
