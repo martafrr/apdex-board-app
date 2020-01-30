@@ -5,14 +5,12 @@ import Logo from '../../assets/logo.png';
 import breakpoint from '../../utils/breakpoints';
 
 class Header extends Component {
-	// TODO: CONNECT TO REDUX LATER
 	state = {
 		grid: false,
 	}
 
 	handleCheck = e => {
-		// TODO: HANDLE CHANGE LATER
-		this.setState({ grid: e.target.checked })
+		this.setState({ grid: !this.state.grid })
 		console.log(e);
 	}
 
@@ -33,10 +31,6 @@ class Header extends Component {
 			display: 'block',
 			height: '70px',
 		}
-		const inputStyles = {
-			height: '40px',
-			marginLeft: '70px',
-		}
 		const headerElemStyles = {
 			display: 'inline-block',
 		}
@@ -53,15 +47,21 @@ class Header extends Component {
 			fontWeight: 'bold',
 			position: 'absolute',
 		}
-		const textStyle = {
-			...headerElemStyles,
-			fontSize: '15px',
-			lineHeight: 0,
-			paddingRight: '50px',
-			marginLeft: '5px',
+		const buttonStyles = {
+			height: '40px',
+			marginLeft: '65px',
+			[breakpoint.mobile]: {
+				margin: 'auto 60px'
+			},
 			[breakpoint.tablet]: {
-				lineHeight: '50px',
+				display: 'flex'
 			}
+		}
+		const gridListButtonStyle = {
+			...headerElemStyles,
+			fontSize: '13px',
+			lineHeight: '25px',
+			marginTop: '3px'
 		}
 		
 		return (
@@ -72,14 +72,15 @@ class Header extends Component {
 						<label>Apps by Host</label>
 					</NavLink>
 				</div>
-				<div style={inputStyles}>
-					<input 
-						style={headerElemStyles}
-						type="checkbox"
-						checked={this.state.grid}
-						onChange={this.handleCheck} 
-					/>
-					<p style={textStyle}>{this.state.grid ? `Show as list` : `Show as an awesome grid`}</p>
+				<div style={buttonStyles}>
+					<button 
+						style={gridListButtonStyle}
+						onClick={this.handleCheck} 
+					>
+						{/* <p style={textStyle}> */}
+						{this.state.grid ? `Show as list` : `Show as an awesome grid`}
+						{/* </p> */}
+					</button>
 				</div>
 			</header>
 		  );

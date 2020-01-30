@@ -24,7 +24,7 @@ class HostPage extends Component {
         });
     }
 
-    handleAddAppForm = ({ name='', contributors='', version='', apdex='', hosts='' }) => {
+    handleAddAppForm = ({ name='', contributors=[''], version='', apdex='', hosts=[''] }) => {
         const error = {};
         let isError = false;
         
@@ -54,7 +54,13 @@ class HostPage extends Component {
         }
         
         const hostName = this.props.match.params.host_name;
-        this.props.addAppToHost({name, contributors, version, apdex, hosts}, hostName);
+        this.props.addAppToHost({
+            name,
+            contributors: contributors.split(','),
+            version,
+            apdex,
+            host: hosts.split(','),
+        }, hostName);
         this.props.clearForm();
     }
 
@@ -98,10 +104,6 @@ class HostPage extends Component {
                             'Hide Form'
                         }
                     </button>
-                    {/* TODO: ADD THIS BUTTON IN MODAL WINDOW */}
-                    {/* <button style={buttonStyles} onClick={this.handleEditClick}>
-                        Edit Hosts Apps
-                    </button> */}
                 </div>
                 {this.state.isAddAppFormVisible && <div>
                     <AddAppForm onSubmit={this.handleAddAppForm}/>

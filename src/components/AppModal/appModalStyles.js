@@ -26,6 +26,10 @@ export const modalCloseButtonStyles = {
     alignSelf: 'flex-end',
 };
 
+export const buttonsWrapperStyles = {
+    display: 'flex'
+}
+
 export const modalRemoveButtonStyles = {
     fontSize: '13px',
     width: '20%',

@@ -21,7 +21,7 @@ const AddAppForm = (props) => (
         />
         <Field 
             name="contributors" 
-            label="Contributors" 
+            label="Contributors (seperated by coma):" 
             component={renderField} 
             type="text"
         />
@@ -39,7 +39,7 @@ const AddAppForm = (props) => (
         />
         <Field 
             name="hosts"
-            label="Hosts (seperated by coma)" 
+            label="Hosts (seperated by coma):" 
             component={renderField}
             type="text" 
         />
