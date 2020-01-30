@@ -15,7 +15,6 @@ const getWidthString = span => {
     return `width: ${width}%;`
 }
 
-// TODO: change FLOAT LEFT
 export const Column = styled.div`
     float: left;
     ${({ xs }) => ( xs ? getWidthString(xs) : 'width: 100%')};

@@ -24,7 +24,7 @@ class HostPage extends Component {
         });
     }
 
-    handleAddAppForm = ({ name='', contributors=[''], version='', apdex='', hosts=[''] }) => {
+    handleAddAppForm = ({ name='', contributors=[], version='', apdex='', hosts=[] }) => {
         const error = {};
         let isError = false;
         
@@ -32,7 +32,7 @@ class HostPage extends Component {
             error.name = 'Required';
             isError = true;
         }
-        if(contributors.trim() === '') {
+        if(contributors.length === 0) {
             error.contributors = 'Required';
             isError = true;
         }
@@ -44,7 +44,7 @@ class HostPage extends Component {
             error.apdex = 'Required';
             isError = true;
         }
-        if(hosts.trim() === '') {
+        if(hosts.length === 0) {
             error.hosts = 'Required';
             isError = true;
         }
