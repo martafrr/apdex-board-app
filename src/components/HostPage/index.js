@@ -12,13 +12,13 @@ import {
 } from './stylesHostPage';
 import { addAppToHost } from '../../store/actions/hostActions';
 
-class HostPage extends Component {
+export class HostPage extends Component {
     state = {
         isAddAppFormVisible: false,
         isEditAppFormVisible: false,
     }
 
-    toggleAddForm = (e) => {
+    toggleAddForm = () => {
         this.setState({
             isAddAppFormVisible: !this.state.isAddAppFormVisible
         });
@@ -92,7 +92,7 @@ class HostPage extends Component {
         (<div>No host with this name found.</div>);
         
         return (
-            <div style={hostCardStyles} data-test="host-info">
+            <div style={hostCardStyles} data-test="host-page">
                 <ul style={appListStyles}>
                     <h3>{hostName}</h3>
                     {appList}
