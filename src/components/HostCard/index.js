@@ -46,7 +46,12 @@ class HostCard extends Component {
             if(index < 5) {
                 return (
                     <div key={app.name}>
-                        <button style={appNameStyles} value={index} onClick={this.handleClickApp}>
+                        <button 
+                            style={appNameStyles} 
+                            value={index} 
+                            onClick={this.handleClickApp}
+                            data-test="open-modal-button"
+                        >
                             {app.apdex} - {app.name}
                         </button>
                     </div>

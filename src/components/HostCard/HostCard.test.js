@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import HostCard from './HostCard';
+import HostCard from './index';
 import { findByTestAtr } from '../../utils/test-utils';
 
 const setup = (props = {}) => {
@@ -14,6 +14,7 @@ describe('HostCard Component', () => {
         name: 'name',
         hostsApp: ['host 1', 'host 2', 'host 3']
     }
+
     beforeEach(() => {
         component = setup(mockProps);
     });
@@ -22,6 +23,24 @@ describe('HostCard Component', () => {
         const wrapper = findByTestAtr(component, 'host-card');
         expect(wrapper.length).toBe(1);
     });
-
     
+    it('handleClickApp should update state as expected', () => {
+        const classInstance = component.instance();
+        const target = { target: { value: 1}}
+        classInstance.handleClickApp(target);
+        const newModalOpen = classInstance.state.modalOpen;
+        const newModalAppInfo = classInstance.state.modalAppInfo;
+        const appsIndex = classInstance.state.appsIndex;
+
+        expect(newModalOpen).toBe(true);
+        expect(newModalAppInfo).toBe('host 2');
+        expect(appsIndex).toBe(1);
+    });
+
+    it('handleOnClose should update state as expected', () => {
+        const classInstance = component.instance();
+        classInstance.handleOnClose();
+        const newState = classInstance.state.modalOpen;
+        expect(newState).toBe(false);
+    });  
 });
