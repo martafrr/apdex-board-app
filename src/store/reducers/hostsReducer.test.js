@@ -1,5 +1,5 @@
 import hostsReducer from './hostsReducer';
-import { GET_HOST, ADD_APP_TO_HOST } from '../actions/constants';
+import { ADD_APP_TO_HOST } from '../actions/constants';
 
 describe('Hosts reducer', () => {
     const hosts = {
@@ -13,18 +13,17 @@ describe('Hosts reducer', () => {
         expect(newState).toEqual(hosts)
     });
 
-    it('should return new state if receiving type', () => {
+    it('should return new state if receiving ADD_APP_TO_HOST', () => {
+        const payload = {
+            'host1': [{name: 'app4', apdex: 100},{name: 'app1', apdex: 1}],
+            'host2': [{name: 'app2', apdex: 1}],
+            'host3': [{name: 'app3', apdex: 1}]
+        };
         const action = {
             type: ADD_APP_TO_HOST,
-            payload: {
-                appInfo: {name: 'app4', apdex: 100}, 
-                hostName: 'host1'
-            }
+            payload
         }
         const newState = hostsReducer(hosts, action);
-        expect(newState['host1']).toEqual([ 
-            {name: 'app4', apdex: 100},
-            {name: 'app1', apdex: 1}
-        ])
+        expect(newState).toEqual(payload)
     });
 });

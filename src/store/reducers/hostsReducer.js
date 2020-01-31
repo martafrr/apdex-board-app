@@ -22,7 +22,7 @@ const getHostsList = (data) => {
     }
     return hostsList;
 }
-const initialState = getHostsList(dataBase);
+export const initialState = getHostsList(dataBase);
 
 export default (state=initialState, action) => {
     switch(action.type) {

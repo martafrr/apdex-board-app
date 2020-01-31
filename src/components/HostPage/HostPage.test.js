@@ -29,7 +29,7 @@ describe('HostPage Component', () => {
     beforeEach(() => {
         component = setup(mockProps);
     });
- 
+
     it('should render without errors', () => {
         const wrapper = findByTestAtr(component, 'host-page');
         expect(wrapper.length).toBe(1);

@@ -16,13 +16,14 @@ export const addAppToHost = ({ name, contributors, version, apdex, host }, hostN
         apdex: parseInt(apdex), 
         host,
     }
-    const appArrayWithNewEntry = store.getState().hosts[hostName]
-                .concat(appInfo);
+    const appArrayWithNewEntry = store.getState()
+        .hosts[hostName]
+        .concat(appInfo);
     const updatedHostList = {
         ...store.getState().hosts,
     }
-    updatedHostList[hostName] = mergeSort(appArrayWithNewEntry);
     
+    updatedHostList[hostName] = mergeSort(appArrayWithNewEntry);
     return {
         type: ADD_APP_TO_HOST,
         payload: updatedHostList

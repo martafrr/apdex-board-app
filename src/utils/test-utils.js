@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import rootReducer from '../store/reducers/rootReducer';
-import { middleware } from '../store';
+import { middlewares } from '../store';
 
 export const findByTestAtr = (component, atr) => {
     const wrapper = component.find(`[data-test='${atr}']`);
@@ -8,6 +8,6 @@ export const findByTestAtr = (component, atr) => {
 };
 
 export const testStore = (initialState) => {
-    const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+    const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
     return createStoreWithMiddleware(rootReducer, initialState);
 };
