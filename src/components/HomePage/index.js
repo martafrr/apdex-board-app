@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { hostsSelector } from '../../store/selectors/hostsSelectors';
 import { gridSelector } from '../../store/selectors/layoutSelectors';
 import HostCard from '../HostCard';
@@ -41,5 +42,10 @@ const mapStateToProps = state => ({
     hosts: hostsSelector(state),
     isAwesomeGrid: gridSelector(state),
 });
+
+HomePage.propTypes = {
+    hosts: PropTypes.object,
+    isAwesomeGrid: PropTypes.bool,
+}
 
 export default connect(mapStateToProps)(HomePage);

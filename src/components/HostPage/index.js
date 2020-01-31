@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SubmissionError, reset } from 'redux-form';
+import PropTypes from 'prop-types';
 import AddAppForm from './AddAppForm';
 import { hostSelector } from '../../store/selectors/hostsSelectors';
 import { 
@@ -125,5 +126,13 @@ const mapDispatchToProps = (dispatch) => ({
     addAppToHost: (appInfo, hostName) => { dispatch(addAppToHost(appInfo, hostName)) },
     clearForm: () => dispatch(reset('addAppForm')),
 });
+
+HostPage.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            host_name: PropTypes.string,
+        }),
+    }),
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(HostPage);

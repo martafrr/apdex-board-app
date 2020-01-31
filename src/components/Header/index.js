@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
@@ -48,5 +49,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
     changeLayout: () => { dispatch(changeLayout()) },
 });
+
+Header.propTypes = {
+	isAwesomeGrid: PropTypes.bool,
+    changeLayout: PropTypes.func,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Radium(Header));

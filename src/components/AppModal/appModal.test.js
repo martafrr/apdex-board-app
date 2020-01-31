@@ -47,6 +47,7 @@ describe('AppModal Component', () => {
     it('should not render if isOpen is false', () => {
         component = setup(initialState, {...mockProps, isOpen: false});
         const wrapper = findByTestAtr(component, 'modal-window');
+        
         expect(wrapper.length).toBe(0);
     });
 
@@ -54,6 +55,7 @@ describe('AppModal Component', () => {
         const closeModalButton = findByTestAtr(component, 'close-modal-button');
         closeModalButton.simulate('click');
         const callback = mockOnClose.mock.calls.length;
+
         expect(callback).toBe(1);
     });
 
@@ -61,6 +63,7 @@ describe('AppModal Component', () => {
         const closeModalButton = findByTestAtr(component, 'remove-host-only-button');
         closeModalButton.simulate('click');
         const callback = mockRemoveHostOnly.mock.calls.length;
+
         expect(callback).toBe(1);
     });
     
@@ -68,6 +71,7 @@ describe('AppModal Component', () => {
         const closeModalButton = findByTestAtr(component, 'remove-all-hosts-button');
         closeModalButton.simulate('click');
         const callback = mockRemoveAllHosts.mock.calls.length;
+
         expect(callback).toBe(1);
     });
 

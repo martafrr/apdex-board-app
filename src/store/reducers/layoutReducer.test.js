@@ -6,6 +6,7 @@ describe('Layout reducer', () => {
     
     it('should return default state', () => {
         const newState = layoutReducer(isAwesomeGrid, {});
+        
         expect(newState).toEqual(isAwesomeGrid)
     });
 
@@ -14,6 +15,7 @@ describe('Layout reducer', () => {
             type: CHANGE_LAYOUT,
             payload: true
         });
+
         expect(newStateProperty).toEqual(true)
     });
 });

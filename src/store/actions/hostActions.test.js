@@ -1,4 +1,4 @@
-import { apiMiddleware, ApiError } from 'redux-api-middleware';
+import { apiMiddleware } from 'redux-api-middleware';
 import configureMockStore from 'redux-mock-store';
 import { 
     addAppToHost,
@@ -19,6 +19,7 @@ describe('addAppToHost actions', () => {
     beforeEach(() => {
         store = createStore(initialState);
     });
+
     it('addAppToHost should return expected payload', () => {
         const mockProps = { 
             name: 'App 4',

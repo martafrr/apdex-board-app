@@ -10,6 +10,7 @@ describe('Hosts reducer', () => {
     
     it('should return default state', () => {
         const newState = hostsReducer(hosts, {});
+
         expect(newState).toEqual(hosts)
     });
 
@@ -24,6 +25,7 @@ describe('Hosts reducer', () => {
             payload
         }
         const newState = hostsReducer(hosts, action);
+        
         expect(newState).toEqual(payload)
     });
 });

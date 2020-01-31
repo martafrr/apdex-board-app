@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { removeAppFromHost, removeAppFromAllHosts } from '../../store/actions/hostActions';
 import { 
     modalStyles,
@@ -8,7 +9,7 @@ import {
     modalRemoveButtonStyles,
 } from './appModalStyles';
 
-export const AppModal = ({ 
+export const AppModal = ({
         appInfo,
         appsIndex, 
         hostName, 
@@ -72,5 +73,15 @@ const mapDispatchToProps = (dispatch) => ({
     removeAppFromHostOnly: (indexAppToRemove, hostsApp) => { dispatch(removeAppFromHost(indexAppToRemove, hostsApp)) },
     removeAppFromAllHosts: (appName) => { dispatch(removeAppFromAllHosts(appName)) },
 });
+
+AppModal.propTypes = {
+    appInfo: PropTypes.object,
+    appsIndex: PropTypes.string, 
+    hostName: PropTypes.string, 
+    isOpen: PropTypes.bool, 
+    onClose: PropTypes.func,
+	removeAppFromHostOnly: PropTypes.func,
+    removeAppFromAllHosts: PropTypes.func,
+}
 
 export default connect(null, mapDispatchToProps)(AppModal);

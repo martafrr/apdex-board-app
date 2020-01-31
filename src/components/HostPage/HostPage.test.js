@@ -32,6 +32,7 @@ describe('HostPage Component', () => {
 
     it('should render without errors', () => {
         const wrapper = findByTestAtr(component, 'host-page');
+
         expect(wrapper.length).toBe(1);
     });
 
@@ -39,6 +40,7 @@ describe('HostPage Component', () => {
         const classInstance = component.instance();
         classInstance.toggleAddForm();
         const newState = classInstance.state.isAddAppFormVisible;
+
         expect(newState).toBe(true);
     }); 
 
@@ -54,6 +56,7 @@ describe('HostPage Component', () => {
         classInstance.handleAddAppForm(formValues);
         const addAppToHost = mockAddAppToHost.mock.calls.length;
         const clearForm = mockClearForm.mock.calls.length;
+
         expect(addAppToHost).toBe(1);
         expect(clearForm).toBe(1);
     });
@@ -62,12 +65,14 @@ describe('HostPage Component', () => {
         const classInstance = component.instance();
         classInstance.handleEditClick();
         const newState = classInstance.state.isEditAppFormVisible;
+
         expect(newState).toBe(true);
     }); 
 
     it('getTopAppsByHost should return an array of the apps', () => {
         const classInstance = component.instance();
         const appsArray = classInstance.getTopAppsByHost();
+        
         expect(appsArray.length).toBe(2);
     }); 
 });

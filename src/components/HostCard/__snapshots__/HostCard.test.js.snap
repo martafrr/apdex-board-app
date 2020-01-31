@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HostCard Component matches the snapshot 1`] = `
+<div
+  data-test="host-card"
+  style={
+    Object {
+      "background": "#d6d7dc",
+      "fontSize": "14px",
+      "height": "280px",
+      "margin": "10px",
+      "padding": "5px 11px",
+    }
+  }
+>
+  <a
+    href="/undefined"
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "#2c3437",
+      }
+    }
+  >
+    <h3 />
+  </a>
+  <div>
+    <button
+      className="openModalButton"
+      data-test="open-modal-button"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "none",
+          "border": "none",
+          "fontSize": "13px",
+          "margin": "7px auto",
+          "textAlign": "left",
+        }
+      }
+      value={0}
+    >
+       - 
+    </button>
+  </div>
+  <div>
+    <button
+      className="openModalButton"
+      data-test="open-modal-button"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "none",
+          "border": "none",
+          "fontSize": "13px",
+          "margin": "7px auto",
+          "textAlign": "left",
+        }
+      }
+      value={1}
+    >
+       - 
+    </button>
+  </div>
+  <div>
+    <button
+      className="openModalButton"
+      data-test="open-modal-button"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "none",
+          "border": "none",
+          "fontSize": "13px",
+          "margin": "7px auto",
+          "textAlign": "left",
+        }
+      }
+      value={2}
+    >
+       - 
+    </button>
+  </div>
+</div>
+`;

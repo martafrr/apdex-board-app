@@ -1,12 +1,8 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
+import { create } from 'react-test-renderer';
 import HostCard from './index';
-import { findByTestAtr } from '../../utils/test-utils';
-
-const setup = (props = {}) => {
-    const component = shallow(<HostCard {...props} />);
-    return component;
-};
 
 describe('HostCard Component', () => {
     let component;
@@ -16,31 +12,16 @@ describe('HostCard Component', () => {
     }
 
     beforeEach(() => {
-        component = setup(mockProps);
-    });
- 
-    it('should render without errors', () => {
-        const wrapper = findByTestAtr(component, 'host-card');
-        expect(wrapper.length).toBe(1);
-    });
-    
-    it('handleClickApp should update state as expected', () => {
-        const classInstance = component.instance();
-        const target = { target: { value: 1}}
-        classInstance.handleClickApp(target);
-        const newModalOpen = classInstance.state.modalOpen;
-        const newModalAppInfo = classInstance.state.modalAppInfo;
-        const appsIndex = classInstance.state.appsIndex;
+        component = shallow(<HostCard {...mockProps} />);
 
-        expect(newModalOpen).toBe(true);
-        expect(newModalAppInfo).toBe('host 2');
-        expect(appsIndex).toBe(1);
     });
+    it('matches the snapshot', () => {
+        component = create(
+            <BrowserRouter>
+                <HostCard {...mockProps} />
+            </BrowserRouter>
+        );
 
-    it('handleOnClose should update state as expected', () => {
-        const classInstance = component.instance();
-        classInstance.handleOnClose();
-        const newState = classInstance.state.modalOpen;
-        expect(newState).toBe(false);
-    });  
+        expect(component.toJSON()).toMatchSnapshot();
+    });
 });
